@@ -1,14 +1,10 @@
-'use strict';
-
 import React from 'react';
-import { Router, Route, IndexRoute, useRouterHistory } from 'react-router';
-import { createHashHistory } from 'history';
-
-const hashHistory = useRouterHistory(createHashHistory)({ queryKey: false });
+import { Route, IndexRoute } from 'react-router';
+import App from '../components/App';
 
 const routes = (
-	<Router history={hashHistory}>
-	</Router>
+	<Route path='/' component={App}>
+	</Route>
 );
 
 export default routes;

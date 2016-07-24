@@ -1,12 +1,18 @@
-'use strict';
-
-require('../src/sass/app.scss');
-
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
+import { Router, useRouterHistory } from 'react-router';
 import routes from './config/routes';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import allReducers from './reducers';
+import { createHashHistory } from 'history';
+
+const history = useRouterHistory(createHashHistory)({ queryKey: false });
+const store = createStore(allReducers);
 
 ReactDOM.render(
-	<h1>hello world!!</h1>,
-	document.getElementById('app')
+	<Provider store={store}>
+		<Router history={history} routes={routes} />
+	</Provider>,
+    document.getElementById('app')
 );
