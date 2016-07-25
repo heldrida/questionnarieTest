@@ -2,30 +2,61 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { selectAnswer } from '../actions/index';
+import _ from 'lodash';
 
 class QuestionList extends Component {
+	constructor(props) {
+		super(props);
+		this.properties(props);
+	}
 
-	createQuestionList() {
-		return this.props.questions.map((question) => {
-			let list = question.answers.map((answer) => {
+	properties(props) {
+		this.question_id = props.params.question_id;
+	}
+
+	getQuestion(id) {
+
+		let q = _.find(this.props.questions, (o) => { 
+			return o.id < id;
+		});
+
+		return q;
+	}
+
+	createAnswerList(id) {
+		let list = null;
+		let question = _.find(this.props.questions, function (question) {
+			return question.id == id;
+		});
+
+		if (question) {
+
+			list = question.answers.map((answer) => {
 				return (
-					<li 
-						key={ answer.id }
-						onClick={ () => this.props.selectAnswer(answer.id) }
-					>
-					{ answer.answer }
-					</li>
+						<li 
+							key={ answer.id }
+							onClick={ () => this.props.selectAnswer(answer.id) }
+						>
+						{ answer.answer }
+						</li>
 				)
 			});
-			return list;
-		});
+
+		}
+
+		return list;
 	}
 
 	render() {
+		let qid = this.question_id;
+
 		return (
-			<ul>
-				{ this.createQuestionList() }		
-			</ul>
+			<div>
+				<h2>{ this.getQuestion(qid) }</h2>	
+				<ul>
+				{ this.createAnswerList(qid) }
+				</ul>
+			</div>
 		);
 	}
 }
