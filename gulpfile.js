@@ -1,5 +1,4 @@
-var config = require('./config'),
-	gulp = require('gulp'),
+var gulp = require('gulp'),
 	sass = require('gulp-sass'),
 	plumber = require('gulp-plumber'),
 	webpack = require("webpack"),
@@ -27,30 +26,6 @@ gulp.task('html', function () {
 				.pipe(gulp.dest('build'));
 });
 
-gulp.task("webpack:build", ['images'], function(callback) {
-	// modify some webpack config options
-	var myConfig = Object.create(webpackConfigProduction);
-	myConfig.plugins = myConfig.plugins.concat(
-		new webpack.DefinePlugin({
-			"process.env": {
-				// This has effect on the react lib size
-				"NODE_ENV": JSON.stringify("production")
-			}
-		}),
-		new webpack.optimize.DedupePlugin(),
-		new webpack.optimize.UglifyJsPlugin()
-	);
-
-	// run webpack
-	webpack(myConfig, function(err, stats) {
-		if(err) throw new gutil.PluginError("webpack:build", err);
-		gutil.log("[webpack:build]", stats.toString({
-			colors: true
-		}));
-		callback();
-	});
-});
-
 gulp.task("webpack:server", function(callback) {
 
 	// modify some webpack config options
@@ -76,6 +51,16 @@ gulp.task("webpack:server", function(callback) {
 		gutil.log("[webpack-dev-server]", "http://localhost:3000");
 	});
 
+});
+
+gulp.task("build", ['html', 'sass', 'images'], function () {
+    // run webpack
+    webpack(webpackConfig, function (err, stats) {
+        if(err) throw new gutil.PluginError("webpack", err);
+        gutil.log("[webpack]", stats.toString({
+            // output options
+        }));
+    });
 });
 
 gulp.task('watch', function () {
