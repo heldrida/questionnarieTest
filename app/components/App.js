@@ -11,6 +11,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.question_id = parseInt(this.props.params.question_id) || 0;
+		console.log(props);
 	}
 
 	getPreviousParam() {
@@ -35,7 +36,7 @@ class App extends Component {
 						<StartPanel />
 					)}
 				</div>
-				<div>
+				<div className={ 'nav' }>
 					<Link to={ '/question/' + this.getPreviousParam() }>Previous</Link>
 					{ this.question_id < this.props.questions.length ? (
 						<Link to={ '/question/' + this.getNextParam() }>Next</Link>
