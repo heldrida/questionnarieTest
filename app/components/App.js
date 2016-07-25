@@ -11,7 +11,6 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.question_id = parseInt(this.props.params.question_id) || 0;
-		console.log(props);
 	}
 
 	getPreviousParam() {
@@ -26,7 +25,12 @@ class App extends Component {
 		return param;
 	}
 
+	getNavbarClassName(pathname) {
+		return this.props.params.question_id ? 'active' : '';
+	}
+
 	render() {
+
 		return (
 			<div>
 				<div>
@@ -36,7 +40,7 @@ class App extends Component {
 						<StartPanel />
 					)}
 				</div>
-				<div className={ 'nav' }>
+				<div className={ 'nav' + ' ' + this.getNavbarClassName(this.props.pathname) }>
 					<Link to={ '/question/' + this.getPreviousParam() }>Previous</Link>
 					{ this.question_id < this.props.questions.length ? (
 						<Link to={ '/question/' + this.getNextParam() }>Next</Link>
@@ -48,9 +52,10 @@ class App extends Component {
 }
 
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
 	return {
-		questions: state.questions
+		questions: state.questions,
+		pathname: ownProps.location.pathname
 	}
 }
 
