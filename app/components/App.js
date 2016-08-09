@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
+import QuestionNav from '../containers/question-nav.js';
 
 require('../../src/sass/app.scss');
 
@@ -45,6 +46,7 @@ class App extends Component {
 						this.props.question_id > 1 && 
 						<Link to={ '/question/' + this.getPreviousParam() }>Previous</Link>
 					}
+					<QuestionNav questions={ this.props.questions } />
 					{
 						this.props.question_id < this.props.questions.length &&
 						<Link to={ '/question/' + this.getNextParam() } onClick={ () => { browserHistory.push('/question/' + this.props.params.question_id)	} }>Next</Link>
