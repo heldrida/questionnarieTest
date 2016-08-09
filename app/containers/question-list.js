@@ -7,20 +7,15 @@ import _ from 'lodash';
 class QuestionList extends Component {
 	constructor(props) {
 		super(props);
-		this.properties(props);
-	}
-
-	properties(props) {
-		this.question_id = props.params.question_id;
 	}
 
 	getQuestion(id) {
 
-		let q = _.find(this.props.questions, (o) => { 
-			return o.id < id;
+		let question = _.find(this.props.questions, function (question) {
+			return question.id == id;
 		});
 
-		return q;
+		return question.question;
 	}
 
 	createAnswerList(id) {
@@ -48,22 +43,14 @@ class QuestionList extends Component {
 	}
 
 	render() {
-		let qid = this.question_id;
-
 		return (
 			<div>
-				<h2>{ this.getQuestion(qid) }</h2>	
+				<h2>{ this.getQuestion(this.props.question_id) }</h2>	
 				<ul>
-				{ this.createAnswerList(qid) }
+				{ this.createAnswerList(this.props.question_id) }
 				</ul>
 			</div>
 		);
-	}
-}
-
-function mapStateToProps(state) {
-	return {
-		questions: state.questions
 	}
 }
 
@@ -73,4 +60,4 @@ function matchDispatchToProps(dispatch) {
 	}, dispatch);
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)(QuestionList);
+export default connect(false, matchDispatchToProps)(QuestionList);

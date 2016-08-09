@@ -4,29 +4,29 @@ import StartPanel from './StartPanel.js';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 require('../../src/sass/app.scss');
 
 class App extends Component {
 	constructor(props) {
 		super(props);
-		this.question_id = parseInt(this.props.params.question_id) || 0;
 	}
 
 	getPreviousParam() {
 		let param;
-		param = Math.max(0, this.question_id - 1);
+		param = Math.max(0, parseInt(this.props.params.question_id) - 1);
 		return param;
 	}
 
 	getNextParam() {
 		let param;
-		param = this.question_id + 1;
+		param = parseInt(this.props.params.question_id) + 1;
 		return param;
 	}
 
-	getNavbarClassName(pathname) {
-		return this.props.params.question_id ? 'active' : '';
+	getNavbarClassName() {
+		return parseInt(this.props.params.question_id) > 0 ? 'active' : '';
 	}
 
 	render() {
@@ -34,17 +34,21 @@ class App extends Component {
 		return (
 			<div>
 				<div>
-					{ this.props.children ? (
-						this.props.children
+					{ this.props.children ? (						
+						React.cloneElement(this.props.children, { questions: this.props.questions, question_id: this.props.question_id })
 					) : (
 						<StartPanel />
 					)}
 				</div>
-				<div className={ 'nav' + ' ' + this.getNavbarClassName(this.props.pathname) }>
-					<Link to={ '/question/' + this.getPreviousParam() }>Previous</Link>
-					{ this.question_id < this.props.questions.length ? (
-						<Link to={ '/question/' + this.getNextParam() }>Next</Link>
-					) : null }
+				<div className={ 'nav' + ' ' + this.getNavbarClassName() }>					
+					{
+						this.props.question_id > 1 && 
+						<Link to={ '/question/' + this.getPreviousParam() }>Previous</Link>
+					}
+					{
+						this.props.question_id < this.props.questions.length &&
+						<Link to={ '/question/' + this.getNextParam() } onClick={ () => { browserHistory.push('/question/' + this.props.params.question_id)	} }>Next</Link>
+					}
 				</div>
 			</div>
 		)
@@ -55,7 +59,7 @@ class App extends Component {
 function mapStateToProps(state, ownProps) {
 	return {
 		questions: state.questions,
-		pathname: ownProps.location.pathname
+		question_id: ownProps.params.question_id
 	}
 }
 
