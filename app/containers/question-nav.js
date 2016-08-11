@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 
 class QuestionNav extends Component {
+
 	constructor(props) {
 		super(props);
 	}
+
 	generate() {
 		return this.props.questions.map((question) => {
 			return (
@@ -16,19 +18,20 @@ class QuestionNav extends Component {
 			)
 		})
 	}
-	// render() {
-	// 	return (
-	// 		<ul>
-	// 		{ this.generate() }
-	// 		</ul>
-	// 	);
-	// }
+
 	render() {
 		return (
-			<ul>
-			</ul>
+			<div>
+			{
+				typeof this.props.question !== 'undefined' && Object.keys(this.props.questions).length === 0 && this.props.questions.constructor === Object &&
+				<ul>
+				{ this.generate() }
+				</ul>
+			}
+			</div>
 		);
 	}
+
 }
 
 export default QuestionNav;
