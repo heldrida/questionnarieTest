@@ -1,7 +1,7 @@
 export const selectAnswer = (answer) => {
 	console.log("answer", answer);
 	return {
-		type: "ANSWER_SELECTED",
+		type: "ADD_ANSWER",
 		payload: answer
 	}
 };

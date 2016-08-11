@@ -15,7 +15,10 @@ class QuestionList extends Component {
 			return (
 					<li 
 						key={ answer.id }
-						onClick={ () => this.props.selectAnswer(answer.id) }
+						onClick={ () => this.props.selectAnswer({
+							question_id: this.props.question_id,
+							answer_id: answer.id
+						}) }
 					>
 					{ answer.answer }
 					</li>
