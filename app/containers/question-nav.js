@@ -23,7 +23,7 @@ class QuestionNav extends Component {
 		return (
 			<div>
 			{
-				typeof this.props.question !== 'undefined' && Object.keys(this.props.questions).length === 0 && this.props.questions.constructor === Object &&
+				Object.keys(this.props.questions).length > 0 &&
 				<ul>
 				{ this.generate() }
 				</ul>
