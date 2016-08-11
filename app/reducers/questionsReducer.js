@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 var data = [{
 	"id": 1,
 	"question": "1Supa dupa question ?",
@@ -54,23 +56,26 @@ function questionsReducer (state=data, action) {
 
 		case 'ADD_ANSWER':
 
+			// set the selected answer without mutating the original object
 			var qid = action.payload.question_id;
 			var aid = action.payload.answer_id;
 			var questions = state.slice();
-			var questionIndex = questions.findIndex((question) => question.id === qid);
-			var question = Object.assign({}, questions[questionIndex], {
+			var index = _.findIndex(questions, function (question) {
+				return question.id === parseInt(qid);
+			});
+			var question = Object.assign({}, questions[index], {
 			  selected_answer: aid,
 			});
 
 			console.log('qid', qid);
 			console.log('aid', aid);
 			console.log('questions', questions);
-			console.log('questionIndex', questionIndex);
+			console.log('index', index);
 			console.log('question', question);
 
-			questions[questionIndex] = question;
+			questions[index] = question;
 
-			return state;
+			return questions;
 
 		default:
 
