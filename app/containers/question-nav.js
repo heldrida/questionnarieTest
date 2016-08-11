@@ -16,10 +16,16 @@ class QuestionNav extends Component {
 			)
 		})
 	}
+	// render() {
+	// 	return (
+	// 		<ul>
+	// 		{ this.generate() }
+	// 		</ul>
+	// 	);
+	// }
 	render() {
 		return (
 			<ul>
-			{ this.generate() }
 			</ul>
 		);
 	}

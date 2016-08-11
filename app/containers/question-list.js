@@ -8,6 +8,10 @@ class QuestionList extends Component {
 	constructor(props) {
 		super(props);
 	}
+ 
+	componentWillMount() {
+
+	}
 
 	createAnswerList(id) {
 
