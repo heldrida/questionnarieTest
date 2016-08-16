@@ -1,14 +1,9 @@
 import { combineReducers } from 'redux';
-import questionsReducer from './questionsReducer';
-import selectQuestionReducer from './selectQuestionReducer';
-import setQuestionIdReducer from './setQuestionIdReducer';
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import fetchQuestionsReducer from './reducer_fetch_questions';
 
-const allReducers = combineReducers({
-	questions: questionsReducer,
-	routing: routerReducer,
-	selected_question: selectQuestionReducer,
-	question_id: setQuestionIdReducer
+const rootReducer = combineReducers({
+	questions: fetchQuestionsReducer,
+	selected_question: null
 });
 
-export default allReducers;
+export default rootReducer;

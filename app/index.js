@@ -1,19 +1,20 @@
 import React from 'react';
 import ReactDOM from "react-dom";
-import { Router, useRouterHistory, browserHistory } from 'react-router';
-import routes from './config/routes';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import allReducers from './reducers';
-import { createHashHistory } from 'history';
+import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux'
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import routes from './config/routes';
+import reducers from './reducers';
+import promise from 'redux-promise';
 
-const store = createStore(allReducers);
-const history = syncHistoryWithStore(browserHistory, store);
+const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+const store = createStoreWithMiddleware(reducers);
+//const history = syncHistoryWithStore(browserHistory, store);
 
 ReactDOM.render(
 	<Provider store={store}>
-		<Router history={history} routes={routes} />
+		<Router history={browserHistory} routes={routes} />
 	</Provider>,
     document.getElementById('app')
 );
