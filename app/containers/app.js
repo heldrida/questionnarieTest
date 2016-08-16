@@ -19,7 +19,7 @@ class App extends Component {
 		{ console.log(this.props.questions) }
 		return (
 			<div>
-				<h1>App.js</h1>
+				<h1>Questions app title</h1>
 				{ !this.props.questions.loading && <Questions /> }
 			</div>
 		);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 class Questions extends Component {
 	render() {
@@ -8,7 +9,9 @@ class Questions extends Component {
 				<ul>
 				{
 					this.props.questions.map((data) => {
-						return <li key={ data.id }>{ data.question }</li>
+						return <li key={ data.id }>
+									<Link to={ `/question/${data.id}` }>{ data.question }</Link>
+								</li>
 					})
 				}
 				</ul>
