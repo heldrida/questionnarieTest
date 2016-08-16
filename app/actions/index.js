@@ -1,7 +1,7 @@
 import data from '../data/questions.js';
 
 export const FETCH_QUESTIONS = 'FETCH_QUESTIONS';
-export const SET_ACTIVE_QUESTION_ID = 'SET_ACTIVE_QUESTION_ID';
+export const SET_ACTIVE_QUESTION = 'SET_ACTIVE_QUESTION';
 
 export function fetchQuestions() {
 
@@ -19,8 +19,9 @@ export function fetchQuestions() {
 }
 
 export function setActiveQuestion(question_id) {
+	console.log('setActiveQuestion question_id: ', question_id);
 	return {
-		type: SET_ACTIVE_QUESTION_ID,
+		type: SET_ACTIVE_QUESTION,
 		payload: question_id
 	}
 }

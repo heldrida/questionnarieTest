@@ -1,5 +1,5 @@
-import { FETCH_QUESTIONS, SET_ACTIVE_QUESTION_ID } from '../actions/index';
-
+import { FETCH_QUESTIONS, SET_ACTIVE_QUESTION } from '../actions/index';
+console.log('>>> SET_ACTIVE_QUESTION', SET_ACTIVE_QUESTION);
 const INITIAL_STATE = {
 	loading: true,
 	list: [],
@@ -14,7 +14,7 @@ export default function(state = INITIAL_STATE, action) {
 				list: action.payload
 			});
 		break;
-		case SET_ACTIVE_QUESTION_ID:
+		case SET_ACTIVE_QUESTION:
 			return Object.assign({}, state, {
 				active_question_id: action.payload
 			});

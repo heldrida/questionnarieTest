@@ -11,10 +11,6 @@ class App extends Component {
 		this.props.fetchQuestions();
 	}
 
-	componentWillReceiveProps() {
-
-	}
-
 	render() {
 		return (
 			<div>
@@ -26,8 +22,8 @@ class App extends Component {
 	}
 }
 
-
 function mapStateToProps(state, ownProps) {
+	{ console.log(state) }
 	return {
 		questions: state.questions
 	}

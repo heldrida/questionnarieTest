@@ -10,11 +10,11 @@ import promise from 'redux-promise';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 const store = createStoreWithMiddleware(reducers);
-//const history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(browserHistory, store);
 
 ReactDOM.render(
-	<Provider store={store}>
-		<Router history={browserHistory} routes={routes} />
+	<Provider store={ store }>
+		<Router history={ history } routes={ routes } />
 	</Provider>,
     document.getElementById('app')
 );
