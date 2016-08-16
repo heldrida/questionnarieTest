@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchQuestions } from '../actions/index';
+import Questions from '../containers/questions';
 
 require('../../src/sass/app.scss');
 
@@ -15,12 +16,11 @@ class App extends Component {
 	}
 
 	render() {
-		console.log('this.props.questions.loading', this.props.questions.loading);
-		console.log('this.props.questions.list', this.props.questions.list);
-
+		{ console.log(this.props.questions) }
 		return (
 			<div>
 				<h1>App.js</h1>
+				{ !this.props.questions.loading && <Questions /> }
 			</div>
 		);
 	}
