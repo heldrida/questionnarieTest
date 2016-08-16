@@ -27,11 +27,19 @@ export function setActiveQuestion(question_id) {
 }
 
 export function setQuestionAnswer(question_id, answer_id) {
+
+	// Fake the http post request
+	let promise = new Promise(function (resolve, reject) {
+		setTimeout(function () {
+			resolve({
+				question_id: question_id,
+				answer_id: answer_id
+			});
+		}, 400);
+	});
+
 	return {
 		type: SET_QUESTION_ANSWER,
-		payload: {
-			question_id: question_id,
-			answer_id: answer_id
-		}
+		payload: promise
 	}
 }
