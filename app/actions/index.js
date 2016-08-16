@@ -30,7 +30,7 @@ export function setQuestionAnswer(question_id, answer_id) {
 
 	let getCorrectAnswer = () => {
 		let q = _.find(data, function (question) {
-			return question.id === 1;
+			return question.id === question_id;
 		});
 		return q ? q.correct : false;
 	};

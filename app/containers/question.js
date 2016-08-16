@@ -8,6 +8,9 @@ import { Link } from 'react-router';
 class Question extends Component {
 	componentWillMount() {
 		this.setEventListeners();
+		this.setState({
+			'myClassName': ''
+		});
 	}
 
 	setEventListeners() {
@@ -18,15 +21,27 @@ class Question extends Component {
 	}
 
 	setAnswer(answer_id) {
-		console.log("Question => onClick LI => setAnswer => param:answer_id: " + answer_id + ", question_id: " + this.props.question.id);
 		let question_id = this.props.question.id;
-		this.props.setQuestionAnswer(question_id, answer_id);
-		console.log('this.props.answers', this.props.answers);
+		let promise = this.props.setQuestionAnswer(question_id, answer_id);
+		promise.then((res) => {
+			this.getClassName(res);
+		});
+	}
+
+	getClassName(res) {
+
+		let myClassName = '';
+
+		myClassName += res.answer_id === res.correct_answer_id && (' ' + 'correct');
+
+		this.setState({
+			'myClassName': myClassName
+		});
 	}
 
 	answersList() {
 		return this.props.question.answers.map((answer) => {
-			return <li key={ answer.id } onClick={ () => this.setAnswer(answer.id) }>{ answer.text }</li>
+			return <li className={ this.state.myClassName } key={ answer.id } onClick={ () => this.setAnswer(answer.id) }>{ answer.text }</li>
 		});
 	}
 
