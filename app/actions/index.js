@@ -19,7 +19,6 @@ export function fetchQuestions() {
 }
 
 export function setActiveQuestion(question_id) {
-	console.log('setActiveQuestion question_id: ', question_id);
 	return {
 		type: SET_ACTIVE_QUESTION,
 		payload: question_id

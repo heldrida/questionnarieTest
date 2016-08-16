@@ -10,9 +10,9 @@ class Question extends Component {
 	}
 
 	setEventListeners() {
-
 		this.props.router.listen(() => {
-			this.props.setActiveQuestion(this.props.params.question_id);
+			let question_id = this.props.params.question_id;
+			this.props.setActiveQuestion(question_id);
 		});
 	}
 
