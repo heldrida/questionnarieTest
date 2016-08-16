@@ -16,11 +16,11 @@ class App extends Component {
 	}
 
 	render() {
-		{ console.log(this.props.questions) }
 		return (
 			<div>
 				<h1>Questions app title</h1>
-				{ !this.props.questions.loading && <Questions /> }
+				{ !this.props.questions.loading && !this.props.children && <Questions /> }
+				{ !this.props.questions.loading && this.props.children }
 			</div>
 		);
 	}
