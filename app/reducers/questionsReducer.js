@@ -10,8 +10,6 @@ function questionsReducer (state={}, action) {
 
 		case 'ADD_ANSWER':
 
-			console.log(action);
-
 			// set the selected answer without mutating the original object
 			var qid = action.payload.question_id;
 			var aid = action.payload.answer_id;
@@ -24,8 +22,6 @@ function questionsReducer (state={}, action) {
 			});
 
 			questions[index] = question;
-
-			console.log(questions);
 
 			return questions;
 

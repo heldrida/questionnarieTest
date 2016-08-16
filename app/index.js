@@ -10,9 +10,6 @@ import { syncHistoryWithStore } from 'react-router-redux'
 
 const store = createStore(allReducers);
 const history = syncHistoryWithStore(browserHistory, store);
-// history.listen(location => {
-// 	console.log('location.pathname: ' + location.pathname);
-// })
 
 ReactDOM.render(
 	<Provider store={store}>

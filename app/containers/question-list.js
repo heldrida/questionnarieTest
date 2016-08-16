@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { selectAnswer } from '../actions/index';
+import { selectAnswer, selectQuestion } from '../actions/index';
 import _ from 'lodash';
 
 class QuestionList extends Component {
@@ -10,7 +10,10 @@ class QuestionList extends Component {
 	}
  
 	componentWillMount() {
-
+		this.props.selectQuestion({
+			question_id: this.props.question_id,
+			questions: this.props.questions
+		});
 	}
 
 	createAnswerList(id) {
@@ -44,16 +47,17 @@ class QuestionList extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
+	console.log("state.selected_question", state.selected_question);
 	return {
-		selected_question: _.find(ownProps.questions, function (question) {
-			return question.id == ownProps.question_id;
-		})
+		questions: state.questions,
+		selected_question: state.selected_question
 	}
 }
 
 function matchDispatchToProps(dispatch) {
 	return bindActionCreators({
 		selectAnswer: selectAnswer,
+		selectQuestion: selectQuestion
 	}, dispatch);
 }
 

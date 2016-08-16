@@ -37,6 +37,7 @@ gulp.task("webpack:server", function(callback) {
 	var server = new webpackDevServer(webpack(myConfig), {
 		//noInfo: true,
 		//watch: true,
+		historyApiFallback: true,
 		contentBase: './build',
 		hot: true,
 		progress: true,

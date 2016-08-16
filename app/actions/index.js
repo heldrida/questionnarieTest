@@ -2,8 +2,6 @@ import data from '../data/questions.js';
 
 export const selectAnswer = (answer) => {
 
-	console.log("answer", answer);
-
 	return {
 		type: "ADD_ANSWER",
 		payload: answer
@@ -11,9 +9,27 @@ export const selectAnswer = (answer) => {
 
 };
 
-export const fetchData = () => {
+export const selectQuestion = (question) => {
 
-	console.log("FETCH_DATA call");
+	return {
+		type: "SELECT_QUESTION",
+		payload: question
+	};
+
+};
+
+export const setQuestionId = (question_id) => {
+
+	return {
+		type: "SET_QUESTION_ID",
+		payload: {
+			question_id: question_id
+		}
+	};
+
+};
+
+export const fetchData = () => {
 
     let promise = new Promise(function (resolve, reject) {
 			setTimeout(function () {
@@ -30,11 +46,18 @@ export const fetchData = () => {
 
 export const setData = (data) => {
 
-	console.log("SET_DATA Call!");
-	console.log(data);
 	return {
 		type: "SET_DATA",
 		payload: data
+	};
+
+};
+
+export const dataReady = () => {
+
+	return {
+		type: "DATA_READY",
+		payload: true
 	};
 
 };
