@@ -4,7 +4,7 @@ import _ from 'lodash';
 const INITIAL_STATE = {
 	loading: true,
 	list: [],
-	active_question: null
+	active: null
 
 };
 
@@ -25,12 +25,12 @@ export default function(state = INITIAL_STATE, action) {
 
 			// retrieve the active question by the route param `question id`
 			let question_id = parseInt(action.payload);
-			let active_question = _.find(state.list, function (question) {
+			let question = _.find(state.list, function (question) {
 				return question.id === question_id;
 			});
 
 			return Object.assign({}, state, {
-				active_question: active_question
+				active: question
 			});
 
 		break;
