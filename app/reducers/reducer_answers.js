@@ -23,7 +23,8 @@ export default function(state = INITIAL_STATE, action) {
 
 			return [{
 				question_id: action.payload.question_id,
-				answer_id: action.payload.answer_id
+				answer_id: action.payload.answer_id,
+				correct_answer_id: action.payload.correct_answer_id
 			}, ...state];
 
 		break;

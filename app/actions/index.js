@@ -28,12 +28,20 @@ export function setActiveQuestion(question_id) {
 
 export function setQuestionAnswer(question_id, answer_id) {
 
+	let getCorrectAnswer = () => {
+		let q = _.find(data, function (question) {
+			return question.id === 1;
+		});
+		return q ? q.correct : false;
+	};
+
 	// Fake the http post request
 	let promise = new Promise(function (resolve, reject) {
 		setTimeout(function () {
 			resolve({
 				question_id: question_id,
-				answer_id: answer_id
+				answer_id: answer_id,
+				correct_answer_id: getCorrectAnswer()
 			});
 		}, 400);
 	});

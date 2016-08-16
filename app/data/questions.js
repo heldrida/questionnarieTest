@@ -1,7 +1,7 @@
 var data = [{
 	"id": 1,
 	"question": "1Supa dupa question ?",
-	"correct": 1,
+	"correct": 2,
 	"answers": [{
 		"id": 1,
 		"text": "Lorem ipsum a"
@@ -32,7 +32,7 @@ var data = [{
 }, {
 	"id": 3,
 	"question": "3Lopa zapa question ?",
-	"correct": 0,
+	"correct": 1,
 	"answers": [{
 		"id": 1,
 		"text": "weLorem ipsum al"
