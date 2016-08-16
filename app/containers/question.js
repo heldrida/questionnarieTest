@@ -9,8 +9,9 @@ class Question extends Component {
 	componentWillMount() {
 		this.setEventListeners();
 		this.setState({
-			'myClassName': ''
+			'foobar_id': ''
 		});
+		this.getClassName = this.getClassName.bind(this);
 	}
 
 	setEventListeners() {
@@ -22,32 +23,64 @@ class Question extends Component {
 
 	setAnswer(answer_id) {
 		let question_id = this.props.question.id;
-		let promise = this.props.setQuestionAnswer(question_id, answer_id);
-		promise.then((res) => {
-			this.getClassName(res);
-		});
+		this.props.setQuestionAnswer(question_id, answer_id);
 	}
 
-	getClassName(res) {
+	getClassName(answers, item_answer_id) {
 
-		let myClassName = '';
+		let classes = [];
 
-		myClassName += res.answer_id === res.correct_answer_id && (' ' + 'correct');
-
-		this.setState({
-			'myClassName': myClassName
+		// find the answer for the active question
+		let answer_index = _.findIndex(answers, (answer) => {
+			return answer.question_id === this.props.question.id;
 		});
+
+		// if there's no answer yet, skip class placement
+		if (answer_index === -1) {
+			return;
+		}
+
+		let answer = answers[answer_index];
+
+		// Test cases
+		const isUserCorrect = () => {
+			return answer.answer_id == answer.correct_answer_id && item_answer_id == answer.correct_answer_id
+		}
+
+		const isUserAnswer = () => {
+			return answer.answer_id === item_answer_id;
+		}
+
+		const isCorrectAnswer = () => {
+			return item_answer_id == answer.correct_answer_id;
+		}
+
+		// Test and set the correct case classname for styling
+		if (isUserCorrect()) {
+			classes.push('user_correct_answer');
+		}
+
+		if (isUserAnswer()) {
+			classes.push('user_answer');
+		}
+
+		if (isCorrectAnswer()) {
+			classes.push('correct_answer');
+		}
+
+		return classes.length > 0 ? classes.join(' ') : '';
+
 	}
 
 	answersList() {
 		return this.props.question.answers.map((answer) => {
-			return <li className={ this.state.myClassName } key={ answer.id } onClick={ () => this.setAnswer(answer.id) }>{ answer.text }</li>
+			return <li className={ this.getClassName(this.props.answers, answer.id) } key={ answer.id } onClick={ () => this.setAnswer(answer.id) }>{ answer.text }</li>
 		});
 	}
 
 	render() {
 		return (
-			<div>
+			<div className='question-container'>
 				{
 					this.props.question &&
 					this.answersList()
