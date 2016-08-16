@@ -23,7 +23,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-	{ console.log(state) }
+	{ console.log('app.js -> mapStateToProps -> state:', state) }
 	return {
 		questions: state.questions
 	}

@@ -4,13 +4,13 @@ var data = [{
 	"correct": 1,
 	"answers": [{
 		"id": 1,
-		"answer": "Lorem ipsum a"
+		"text": "Lorem ipsum a"
 	}, {
 		"id": 2,
-		"answer": "7Lorem ipsum b"
+		"text": "7Lorem ipsum b"
 	}, {
 		"id": 3,
-		"answer": "Lorem ipsum c"
+		"text": "Lorem ipsum c"
 	}]
 }, {
 	"id": 2,
@@ -18,16 +18,16 @@ var data = [{
 	"correct": 3,
 	"answers": [{
 		"id": 1,
-		"answer": "zLorem ipsum a"
+		"text": "zLorem ipsum a"
 	}, {
 		"id": 2,
-		"answer": "xzLorem ipsum b"
+		"text": "xzLorem ipsum b"
 	}, {
 		"id": 3,
-		"answer": "zxLorem ipsum c"
+		"text": "zxLorem ipsum c"
 	}, {
 		"id": 4,
-		"answer": "zxLorem ipsum d"
+		"text": "zxLorem ipsum d"
 	}]
 }, {
 	"id": 3,
@@ -35,13 +35,13 @@ var data = [{
 	"correct": 0,
 	"answers": [{
 		"id": 1,
-		"answer": "weLorem ipsum al"
+		"text": "weLorem ipsum al"
 	}, {
 		"id": 2,
-		"answer": "xLorem ipsum bel"
+		"text": "xLorem ipsum bel"
 	}, {
 		"id": 3,
-		"answer": "xLorem ipsum cel"
+		"text": "xLorem ipsum cel"
 	}]
 }];
 
