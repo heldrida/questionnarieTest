@@ -4,7 +4,7 @@ import _ from 'lodash';
 const INITIAL_STATE = {
 	loading: true,
 	list: [],
-	active: null
+	active: 0
 
 };
 

@@ -17,7 +17,8 @@ class Question extends Component {
 
 	setEventListeners() {
 		this.props.router.listen(() => {
-			let question_id = this.props.params.question_id;
+			//let question_id = this.props.params.question_id;
+			let question_id = window.location.pathname.split('question/')[1]
 			this.props.setActiveQuestion(question_id);
 		});
 	}
