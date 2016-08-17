@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 class Summary extends Component {
 	render() {
 		return (
-			<div>
+			<div className="summary-container">
 				<ul>
 				{
 					this.props.answers.map((answer, k) => {

@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 class Questions extends Component {
 	render() {
 		return (
-			<div>
+			<div className="questions-container">
 				<ul>
 				{
 					this.props.questions.map((data) => {

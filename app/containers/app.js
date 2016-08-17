@@ -14,8 +14,8 @@ class App extends Component {
 
 	render() {
 		return (
-			<div>
-				<h1>Questions app title</h1>
+			<div className="app-container">
+				<h1>Questions test</h1>
 				{ !this.props.questions.loading && !this.props.children && <Questions /> }
 				{ !this.props.questions.loading && this.props.children }				
 				{ !this.props.questions.loading && <Summary /> }
