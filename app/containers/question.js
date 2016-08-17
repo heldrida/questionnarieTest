@@ -11,17 +11,16 @@ class Question extends Component {
 		super(props);
 		this.getClassName = this.getClassName.bind(this);
 	}
+
 	componentWillMount() {
-		this.setEventListeners();
+		this.props.setActiveQuestion(this.props.question_id);
 	}
 
-	setEventListeners() {
-		this.props.router.listen(() => {
-			//let question_id = this.props.params.question_id;
-			let question_id = window.location.pathname.split('question/')[1]
-			this.props.setActiveQuestion(question_id);
-		});
-	}
+    componentWillReceiveProps(nextProps) {
+		if (this.props.question_id != nextProps.question_id) {
+			this.props.setActiveQuestion(nextProps.question_id);
+		}
+    }
 
 	setAnswer(answer_id) {
 		let question_id = this.props.question.id;
@@ -100,6 +99,7 @@ class Question extends Component {
 
 function mapStateToProps(state, ownProps) {
 	return {
+		question_id: ownProps.params.question_id,
 		question: state.questions.active,
 		answers: state.answers
 	}
@@ -112,4 +112,4 @@ function matchDispatchToProps(dispatch) {
 	}, dispatch);
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)(withRouter(Question));
+export default connect(mapStateToProps, matchDispatchToProps)(Question);
