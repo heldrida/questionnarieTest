@@ -4,14 +4,15 @@ import { withRouter } from 'react-router';
 import { setActiveQuestion, setQuestionAnswer } from '../actions/index';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
+import Navbar from '../containers/navbar';
 
 class Question extends Component {
+	constructor(props) {
+		super(props);
+		this.getClassName = this.getClassName.bind(this);
+	}
 	componentWillMount() {
 		this.setEventListeners();
-		this.setState({
-			'foobar_id': ''
-		});
-		this.getClassName = this.getClassName.bind(this);
 	}
 
 	setEventListeners() {
@@ -80,18 +81,23 @@ class Question extends Component {
 
 	render() {
 		return (
-			<div className='question-container'>
-				{
-					this.props.question &&
-					this.answersList()
-				}
+			<div>
+				<div className='question-container'>
+					<h2>{ this.props.question && this.props.question.question }</h2>
+					<ul>
+					{
+						this.props.question &&
+						this.answersList()
+					}
+					</ul>
+				</div>
+				<Navbar />
 			</div>
 		);
 	}
 }
 
 function mapStateToProps(state, ownProps) {
-	console.log('question.js state: ', state);
 	return {
 		question: state.questions.active,
 		answers: state.answers
